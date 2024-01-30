@@ -1,4 +1,3 @@
-// import { useSelector } from 'react-redux';
 import { getUser } from "../redux/Auth/selectors";
 import { Navigate, useLocation } from "react-router-dom";
 import { useAppSelector } from "../hooks";
