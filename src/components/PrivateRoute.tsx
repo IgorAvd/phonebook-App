@@ -10,5 +10,5 @@ type Props = {
 export const PrivateRoute = ({ children }: Props) => {
   const location = useLocation();
   const user = useAppSelector(getUser);
-  return user ? children : <Navigate to="/login" state={location} />;
+  return user ? <>{children}</> : <Navigate to="/login" state={location} />;
 };

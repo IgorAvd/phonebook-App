@@ -11,7 +11,7 @@ export const PublicRoute = ({ children }: Props) => {
   const location = useLocation();
   const user = useAppSelector(getUser);
   return !user ? (
-    children
+    <>{children}</>
   ) : (
     <Navigate to={location.state ? location.state : "/"} />
   );
