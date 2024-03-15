@@ -27,3 +27,8 @@ export const BtnStyle = {
   margin: "25px auto",
   display: "flex",
 }
+
+// export const TextFieldStyle = {
+//   display: "flex",
+//   width: isDesktop ? "700px" : (isTablet ? "500px" : "300px"),
+// };

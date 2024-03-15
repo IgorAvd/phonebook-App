@@ -5,7 +5,7 @@ import { BtnStyle, WrapperForm } from "./ContactForm.styled";
 import { string, number, object } from "yup";
 import { selectContacts, selectIsLoading } from "../../redux/Contacts/selector";
 import { addContactsThunk } from "../../redux/Contacts/operations";
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, TextField, useMediaQuery } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { notifyError, notifySuccess } from "../../Helpers/ToastNotification";
 import { ThreeCirclesComp } from "../../Helpers/ThreeCircles";
@@ -28,6 +28,13 @@ export const ContactForm = () => {
   const contacts = useAppSelector(selectContacts);
   const isLoading = useAppSelector(selectIsLoading);
   const dispatch = useAppDispatch();
+  const isTablet = useMediaQuery("(min-width: 601px) and (max-width: 960px)");
+  const isDesktop = useMediaQuery("(min-width: 961px)");
+  const adaptiveContactForm = isDesktop
+    ? "700px"
+    : isTablet
+    ? "500px"
+    : "300px";
 
   const handleSubmit = (
     values: FormValues,
@@ -55,7 +62,7 @@ export const ContactForm = () => {
       validationSchema={userSchema}
     >
       {({ getFieldProps, touched, errors }) => (
-        <WrapperForm>
+        <WrapperForm style={{ width: adaptiveContactForm }}>
           <Box mb={2}>
             <TextField
               fullWidth

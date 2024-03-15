@@ -1,11 +1,15 @@
 import React from "react";
 import { logInThunk } from "../../redux/Auth/operations";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, useMediaQuery } from "@mui/material";
 import { useAppDispatch } from "../../hooks";
 import { BtnStyle, TextFieldStyle } from "./LoginForm.styled";
 
 export const LoginForm = () => {
   const dispatch = useAppDispatch();
+  const isTablet = useMediaQuery("(min-width: 601px) and (max-width: 960px)");
+  const isDesktop = useMediaQuery("(min-width: 961px)");
+  const adaptiveLoginForm = isDesktop ? "700px" : isTablet ? "500px" : "300px";
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget as HTMLFormElement;
@@ -22,7 +26,11 @@ export const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} autoComplete="on">
+    <form
+      onSubmit={handleSubmit}
+      style={{ width: adaptiveLoginForm, margin: "0 auto" }}
+      autoComplete="on"
+    >
       <TextField
         label="Email"
         type="email"
