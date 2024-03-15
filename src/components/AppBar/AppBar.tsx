@@ -1,4 +1,3 @@
-// import { useSelector } from "react-redux";
 import React from "react";
 import { getIsLoggedIn } from "../../redux/Auth/selectors";
 import AppBar from "@mui/material/AppBar";

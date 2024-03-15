@@ -2,6 +2,7 @@ import React from "react";
 import { registerThunk } from "../../redux/Auth/operations";
 import { Button, TextField } from "@mui/material";
 import { useAppDispatch } from "../../hooks";
+import { BtnStyle, TextFieldStyle } from "../LoginForm/LoginForm.styled";
 
 export const RegisterForm = () => {
   const dispatch = useAppDispatch();
@@ -28,44 +29,23 @@ export const RegisterForm = () => {
         type="text"
         name="name"
         variant="outlined"
-        sx={{
-          width: "530px",
-          display: "flex",
-          margin: "25px auto",
-        }}
+        sx={TextFieldStyle}
       />
       <TextField
         label="Email"
         type="email"
         name="email"
         variant="outlined"
-        sx={{
-          width: "530px",
-          display: "flex",
-          margin: "25px auto",
-        }}
+        sx={TextFieldStyle}
       />
       <TextField
         label="Password"
         type="password"
         name="password"
         variant="outlined"
-        sx={{
-          width: "530px",
-          display: "flex",
-          margin: "25px auto",
-        }}
+        sx={TextFieldStyle}
       />
-      <Button
-        type="submit"
-        variant="contained"
-        sx={{
-          width: "170px",
-          height: "40px",
-          margin: "25px auto",
-          display: "flex",
-        }}
-      >
+      <Button type="submit" variant="contained" sx={BtnStyle}>
         Register
       </Button>
     </form>

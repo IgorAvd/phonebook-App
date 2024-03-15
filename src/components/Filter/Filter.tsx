@@ -18,7 +18,6 @@ export const Filter = () => {
         name="name"
         variant="outlined"
         sx={{
-          width: "530px",
           display: "flex",
           margin: "25px auto",
         }}

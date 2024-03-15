@@ -1,4 +1,3 @@
-import React from "react";
 import { getIsLoggedIn, getUser } from "../redux/Auth/selectors";
 import { Typography } from "@mui/material";
 import { useAppSelector } from "../hooks";

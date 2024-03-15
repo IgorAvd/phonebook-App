@@ -1,4 +1,3 @@
-import React from "react";
 import { styled } from "@mui/system";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";

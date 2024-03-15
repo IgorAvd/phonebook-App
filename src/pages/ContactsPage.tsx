@@ -1,13 +1,12 @@
-import React from "react";
 import { ContactList } from "../components/ContactList/ContactList";
 import { Filter } from "../components/Filter/Filter";
 import { useEffect } from "react";
 import { getContactsThunk } from "../redux/Contacts/operations";
 import { selectIsError } from "../redux/Contacts/selector";
-import { toast } from "react-toastify";
 import { Typography } from "@mui/material";
 import { ContactForm } from "../components/ContactForm/ContactForm";
 import { useAppDispatch, useAppSelector } from "../hooks";
+import { notifyError } from "../Helpers/ToastNotification";
 
 const ContactsPage = () => {
   const dispatch = useAppDispatch();
@@ -18,16 +17,7 @@ const ContactsPage = () => {
   }, [dispatch]);
 
   if (error) {
-    toast.error("Failed to get contacts", {
-      position: "top-center",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+    notifyError("Failed to get contacts");
   }
 
   return (

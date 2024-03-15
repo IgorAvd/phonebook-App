@@ -1,15 +1,14 @@
-import React from "react";
 import { Formik } from "formik";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { nanoid } from "nanoid";
-import { WrapperForm } from "./ContactForm.styled";
+import { BtnStyle, WrapperForm } from "./ContactForm.styled";
 import { string, number, object } from "yup";
-import { ThreeCircles } from "react-loader-spinner";
 import { selectContacts, selectIsLoading } from "../../redux/Contacts/selector";
 import { addContactsThunk } from "../../redux/Contacts/operations";
 import { Box, Button, TextField } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../hooks";
+import { notifyError, notifySuccess } from "../../Helpers/ToastNotification";
+import { ThreeCirclesComp } from "../../Helpers/ThreeCircles";
 
 let userSchema = object({
   name: string().min(3, "Must be at least 3 characters").required(),
@@ -29,17 +28,6 @@ export const ContactForm = () => {
   const contacts = useAppSelector(selectContacts);
   const isLoading = useAppSelector(selectIsLoading);
   const dispatch = useAppDispatch();
-  const notify = () =>
-    toast.success("Contact is added!", {
-      position: "top-center",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
 
   const handleSubmit = (
     values: FormValues,
@@ -51,20 +39,11 @@ export const ContactForm = () => {
       (contact) => contact.name.toLowerCase() === name.toLowerCase()
     );
     if (isContactExists) {
-      toast.error(`${name} is already in contacts.`, {
-        position: "top-center",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      notifyError(`${name} is already in contacts.`);
       return;
     } else {
       dispatch(addContactsThunk(newContact));
-      notify();
+      notifySuccess("Contact is added!");
     }
     resetForm();
   };
@@ -104,24 +83,9 @@ export const ContactForm = () => {
             type="submit"
             disabled={isLoading}
             variant="contained"
-            sx={{
-              width: "170px",
-              height: "40px",
-              margin: "25px auto",
-              display: "flex",
-            }}
+            sx={BtnStyle}
           >
-            {isLoading ? (
-              <ThreeCircles
-                visible={true}
-                height={16}
-                width={70}
-                color="#4fa94d"
-                ariaLabel="three-circles-loading"
-              />
-            ) : (
-              "Add contact"
-            )}
+            {isLoading ? <ThreeCirclesComp /> : "Add contact"}
           </Button>
         </WrapperForm>
       )}
