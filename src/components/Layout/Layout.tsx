@@ -7,7 +7,7 @@ export const Layout: React.FC = () => {
   return (
     <div>
       <AppBarComponent />
-      <div style={{ paddingLeft: "50px", paddingRight: "50px" }}>
+      <div>
         <Suspense fallback={null}>
           <Outlet />
         </Suspense>

@@ -1,6 +1,6 @@
 import React from "react";
 import { logInThunk } from "../../redux/Auth/operations";
-import { Button, TextField, useMediaQuery } from "@mui/material";
+import { Button, TextField, Typography, useMediaQuery } from "@mui/material";
 import { useAppDispatch } from "../../hooks";
 import { BtnStyle, TextFieldStyle } from "./LoginForm.styled";
 
@@ -31,6 +31,9 @@ export const LoginForm = () => {
       style={{ width: adaptiveLoginForm, margin: "0 auto" }}
       autoComplete="on"
     >
+      <Typography variant="h4" component="h4" sx={{ textAlign: "center" }}>
+        Login
+      </Typography>
       <TextField
         label="Email"
         type="email"
